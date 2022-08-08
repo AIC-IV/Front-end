@@ -24,15 +24,17 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Bem Vindo ao  Guess the Drawing
-        </h1>
+      <h1 className={styles.title}>
+                    Bem Vindo ao  <p className={styles.GTD}>
+                        Guess the Drawing
+                        </p>
+                </h1>
         <p className={styles.description}>
           Seja bem vindo ao Guess the Drawing, onde você poderá jogar contra outros usuários e vencer o jogo.
         </p>
-        <button className={styles.button} onClick={handleLogin}>Login</button>
+        <button className={styles.buttons} onClick={handleLogin}>Login</button>
 
-        <button className={styles.button} onClick={handleRegister}>Cadastrar</button>
+        <button className={styles.buttons} onClick={handleRegister}>Cadastrar</button>
 
       </main>
 
