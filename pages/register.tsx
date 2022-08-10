@@ -39,9 +39,6 @@ const RegisterPage: NextPage = () => {
                         Guess the Drawing
                         </p>
                 </h1>
-                <p className={styles.description}>
-                    Fazer cadastro
-                </p>
                 <Formik<SignUpDto>
         initialValues={{ username: '',email: '', password: '' }}
         onSubmit={onSubmit}
