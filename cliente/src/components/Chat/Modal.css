@@ -1,0 +1,45 @@
+.overlay {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
+  
+  background-color: var(--primary-color);
+  min-height: fit-content;
+  min-width: 35vw;
+  padding: 36px;
+  border-radius: 6px;
+  padding-bottom: 60px;
+}
+
+.username-input {
+  position: relative;
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.input-error {
+  background-color: rgb(252, 217, 217);
+}
+
+.error {
+  color: rgb(255, 118, 118);
+  font-size: 12px;
+  position: absolute;
+  bottom: -20px;
+}
+

@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Webchat
 
-## Getting Started
+## Instalação do servidor
 
-First, run the development server:
+Para rodar o servidor, você precisa instalar o *Node.js* na sua máquina.
 
-```bash
-yarn install
+**Ubuntu:**
 
-yarn dev
+1. Faça download da versão LTS (Long Term Support) disponível no [site oficial](https://nodejs.org/en/).
+2. Abra o terminal na pasta Downloads
+3. Rode os seguintes comandos:
+
+```
+sudo apt update
+sudo apt install xz-utils
+sudo tar -xvf NAME_OF_DOWNLOADED_FILE
+sudo cp -r NAME_OF_DOWNLOADED_FILE/{bin,include,lib,share} /usr/
+export PATH=/usr/NAME_OF_DOWNLOADED_FILE/bin:$PATH
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Você pode verificar se a instalação foi realizada com sucesso rodando ```node --version```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Depois de instalar o Node.js, você precisa acessar a pasta do servidor pelo terminal e então rodar:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```
+npm install
+npm start
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Com isso, o servidor já deve estar rodando!
 
-## Learn More
+## Instalação do cliente
 
-To learn more about Next.js, take a look at the following resources:
+**Ubuntu:**
+Primeiro, siga todas as intruções para instalação do servidor. Em seguida, basta rodar:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npm install
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Com isso, o cliente já deve estar rodando!
+Provavelmente será aberta uma janela no navegador com a aplicação, mas caso isso não ocorra, basta acessar *localhost:3000*.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Você precisará abrir o sistema em no mínimo duas janelas diferentes para conseguir testar corretamente o webchat.**

@@ -1,0 +1,21 @@
+.card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: stretch;
+  padding: 16px;
+}
+
+.white {
+  background-color: white;
+}
+
+.offwhite {
+  background-color: #785CB3;
+}
+
+.purple {
+  background-color: #2C0088;
+}

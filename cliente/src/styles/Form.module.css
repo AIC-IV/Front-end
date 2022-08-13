@@ -1,0 +1,30 @@
+.form-title {
+  color: var(--title-color);
+  text-align: center;
+  margin: 16px 16px 20px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.footer {
+  text-align: center;
+  color: var(--title-color);
+  font-size: 12px;
+}
+
+.highlight {
+  color: var(--seconday-color);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.highlight:hover {
+  opacity: 80%;
+}
+
+.error {
+  text-align: center;
+  color: var(--warning-red);
+}
