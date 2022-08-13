@@ -127,9 +127,9 @@
     filter: invert(1);
   }
 }
-.button{
-  background-color: #4CAF50;
-  border: none;
+.buttons{
+  background-color: #F4B367;
+  border-radius: 6px;
   color: white;
   padding: 15px 32px;
   text-align: center;
@@ -138,4 +138,33 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-width: 600px;
+  min-height: 400px;
+  background-color: #9C6DFF;
+  border-radius: 10px;
+
+}
+
+.input {
+  width:80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  color: #F4B367;
+}
+
+.GTD {
+  color: #F4B367;
 }
