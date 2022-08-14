@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { useState } from 'react';
 import uuid from 'react-uuid';
 
@@ -17,6 +17,15 @@ const Chat = () => {
   const [messageText, setMessageText] = useState('');
   const [socket, setSocket] = useState(null);
 
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const changeMessageHandler = (event) => {
     setMessageText(event.target.value);
@@ -26,6 +35,8 @@ const Chat = () => {
     setMessages((prevMessages) => {
       return [...prevMessages, { ...message, key: uuid(), className }];
     });
+
+    window.scrollTo(0, document.body.scrollHeight);
   };
 
   // block responsible for connecting to the server (via sockets) just once
@@ -46,13 +57,13 @@ const Chat = () => {
         const account = await userService.whoami();
         setUsername(account.username);
       }
-    }
-    
+    };
+
     getUsername();
 
     // sets newSocket into global state variable
     setSocket(newSocket);
-    return () => newSocket.disconnect({username});
+    return () => newSocket.disconnect({ username });
   }, []);
 
   // useEffect block that depends on the username state
@@ -66,7 +77,7 @@ const Chat = () => {
     socket.emit('username_defined', { username });
 
     // listens to message event
-    // whenever event is received, validates if message author 
+    // whenever event is received, validates if message author
     // is not equal to the current username
     socket.on('message', (receivedMessage) => {
       if (receivedMessage.author !== username) {
@@ -116,6 +127,7 @@ const Chat = () => {
             </div>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
       <div className='new-message'>
         <input

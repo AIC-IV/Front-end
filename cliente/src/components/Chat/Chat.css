@@ -45,7 +45,10 @@
   padding: 6px 12px 6px;
   border-radius: 8px;
   background-color: white;
-  min-width: fit-content;
+  /* min-width: fit-content; */
+  max-width: 200px;
+  text-overflow: clip;
+  overflow: hidden;
   max-height: fit-content;
   width: fit-content;
   font-size: 0.9rem;
