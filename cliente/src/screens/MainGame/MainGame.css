@@ -1,5 +1,5 @@
 .grid-container {
-  grid-template-areas: 
+  grid-template-areas:
     'side side header header header header'
     'side side board board board board'
     'side side board board board board'
@@ -14,22 +14,20 @@
 
   display: grid;
   gap: 1rem;
-  padding: 10px;
-  height: 80vh;
+  height: 90vh;
   width: 90vw;
-  /* grid-1fr-flow: column; */
 }
 
 
 
-.item1 { 
+.item1 {
   grid-area: side;
-  display: flex; 
+  display: flex;
 }
 
 .item2 {
   grid-area: header;
-  display: flex; 
+  display: flex;
 }
 
 .item3 {
