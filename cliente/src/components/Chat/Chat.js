@@ -7,7 +7,7 @@ import socketClient from 'socket.io-client';
 import AuthContext from '../../store/auth-context';
 import userService from '../../services/user.service';
 
-const SERVER = 'http://192.168.0.132:8080';
+const SERVER = 'http://192.168.0.132:8080/ws-api';
 
 const Chat = () => {
   // create state variables
@@ -43,7 +43,7 @@ const Chat = () => {
   // useEffect guarantees that everything inside it won't be executed more than once
   useEffect(() => {
     const newSocket = socketClient(SERVER);
-
+    console.log('here', newSocket);
     if (!username) {
       newSocket.on('connection', (socket) => {
         console.log('socket connected', socket);

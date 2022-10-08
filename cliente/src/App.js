@@ -32,9 +32,9 @@ const App = () => {
     <div>
       <Switch>
         <Route path='/' exact>
-          <Redirect to='/main-game' />
+          <Redirect to='/main-game/default' />
         </Route>
-        <Route path='/main-game'>
+        <Route path='/main-game/:roomId'>
           <MainGame />
         </Route>
         <Route path='*'>

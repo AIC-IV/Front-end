@@ -1,7 +1,6 @@
 const express = require('express');
 
 // constants
-const PORT = 8080;
 const IP_ADDRESS = '192.168.0.132';
 
 // storage
