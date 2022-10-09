@@ -27,7 +27,7 @@ const MainGame = (props) => {
       <div className='item3'>
         <Card className='full' color='white'>
           <p className='word'>A palavra é: banana</p>
-          <iframe title='whiteboard' src={`http://localhost:8080/?whiteboardid=${roomId}&username=${authCtx.username}`}></iframe>
+          <iframe title='whiteboard' src={`http://localhost:7070/?whiteboardid=${roomId}&username=${authCtx.username}`}></iframe>
         </Card>
       </div>
       {/* <div className='item4'>

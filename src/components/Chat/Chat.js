@@ -3,11 +3,11 @@ import { useState } from 'react';
 import uuid from 'react-uuid';
 
 import './Chat.css';
-import socketClient from 'socket.io-client';
+import { io } from 'socket.io-client';
 import AuthContext from '../../store/auth-context';
 import userService from '../../services/user.service';
 
-const SERVER = 'http://192.168.0.132:8080/ws-api';
+const SERVER = 'http://192.168.0.132:7070';
 
 const Chat = () => {
   // create state variables
@@ -42,7 +42,7 @@ const Chat = () => {
   // block responsible for connecting to the server (via sockets) just once
   // useEffect guarantees that everything inside it won't be executed more than once
   useEffect(() => {
-    const newSocket = socketClient(SERVER);
+    const newSocket = io(SERVER, { path: '/ws-api' });
     console.log('here', newSocket);
     if (!username) {
       newSocket.on('connection', (socket) => {
@@ -74,7 +74,8 @@ const Chat = () => {
     if (!socket) return;
 
     // emit username_defined event, so server can save the socket info alongside username
-    socket.emit('username_defined', { username });
+    console.log('define username');
+    socket.emit('defineUsername', { username });
 
     // listens to message event
     // whenever event is received, validates if message author
