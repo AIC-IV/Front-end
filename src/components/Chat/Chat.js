@@ -9,7 +9,7 @@ import userService from '../../services/user.service';
 
 const SERVER = 'http://192.168.0.132:7070';
 
-const Chat = () => {
+const Chat = ({chatId, guess}) => {
   // create state variables
   const authCtx = useContext(AuthContext);
   const [username, setUsername] = useState('');
@@ -43,10 +43,9 @@ const Chat = () => {
   // useEffect guarantees that everything inside it won't be executed more than once
   useEffect(() => {
     const newSocket = io(SERVER, { path: '/ws-api' });
-    console.log('here', newSocket);
     if (!username) {
-      newSocket.on('connection', (socket) => {
-        console.log('socket connected', socket);
+      newSocket.on('connect', (socket) => {
+        newSocket.emit('connectToChatRoom', { chatId, guess });
       });
     }
 
@@ -100,7 +99,7 @@ const Chat = () => {
     // validate if message is not empty
     if (!messageText) return;
 
-    const message = { author: username, text: messageText };
+    const message = { author: username, text: messageText, chatId: chatId };
     socket.emit('message', message);
     addMessageHandler(message, 'sent-by-me');
     setMessageText('');

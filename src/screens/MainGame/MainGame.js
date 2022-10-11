@@ -10,6 +10,7 @@ const MainGame = (props) => {
   const authCtx = useContext(AuthContext);
   const params = useParams();
   const roomId = params.roomId;
+
   // TODO: Insert validation to check if such room exists
   // if not, redirect to the room creation screen with a 
   // message explaining the issue
@@ -26,15 +27,18 @@ const MainGame = (props) => {
       </div>
       <div className='item3'>
         <Card className='full' color='white'>
-          <p className='word'>A palavra é: banana</p>
-          <iframe title='whiteboard' src={`http://localhost:7070/?whiteboardid=${roomId}&username=${authCtx.username}`}></iframe>
+          <p className='word'>A palavra é: árvore</p>
+          <iframe
+            title='whiteboard'
+            src={`http://localhost:7070/?whiteboardid=${roomId}&username=${authCtx.username}`}
+          ></iframe>
         </Card>
       </div>
-      {/* <div className='item4'>
-        <Chat></Chat>
-      </div> */}
+      <div className='item4'>
+        <Chat chatId={`${roomId}-guess`} guess={true}></Chat>
+      </div>
       <div className='item5'>
-        <Chat></Chat>
+        <Chat chatId={`${roomId}-chat`} guess={false}></Chat>
       </div>
     </div>
   );
