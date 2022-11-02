@@ -1,23 +1,34 @@
 import React, { useContext } from 'react';
 import AuthContext from '../../store/auth-context';
+import { useHistory, useParams } from 'react-router-dom';
 
 import './Navbar.css';
+import ChooseRoom from '../../screens/ChooseRoom/ChooseRoom';
 
 const Navbar = () => {
+  const history = useHistory();
   const authCtx = useContext(AuthContext);
 
   const logout = () => {
     authCtx.logout();
   }
 
-  return <nav>
-    <ul class='navbar'>
-      <li class='no-select'>Home</li>
-      <li class='no-select'>Ranking</li>
-      <li class='no-select'>Histórico</li>
-      <li class='split' onClick={logout}>Sair</li>
-    </ul>
-  </nav>;
+  const home = () => {
+    history.push('/choose-room');
+  }
+
+  return (
+    <nav>
+      <ul className='navbar'>
+        <li className='no-select' onClick={home}>Home</li>
+        <li className='no-select'>Ranking</li>
+        <li className='no-select'>Histórico</li>
+        <li className='split' onClick={logout}>
+          Sair
+        </li>
+      </ul>
+    </nav>
+  );
 }
 
 export default Navbar;
