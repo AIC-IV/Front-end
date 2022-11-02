@@ -11,10 +11,17 @@
   max-height: 30vh;
 }
 
+.chat-type {
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 4px 8px;
+}
+
 .chat {
-  /* background-color: red; */
   flex: 1;
-  padding: 16px 8px 2px;
+  margin-top: 8px;
+  padding: 8px 8px 2px;
   overflow: auto;
   flex-direction: column;
 }
@@ -28,7 +35,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: purple; */
 }
 
 .message-container {
@@ -45,7 +51,6 @@
   padding: 6px 12px 6px;
   border-radius: 8px;
   background-color: white;
-  /* min-width: fit-content; */
   max-width: 200px;
   text-overflow: clip;
   overflow: hidden;
@@ -67,6 +72,6 @@ p {
 
 .message-author {
   font-weight: 500;
-  font-size: 12px;
+  font-size: 11px;
 }
 

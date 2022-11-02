@@ -73,7 +73,6 @@ const Chat = ({chatId, guess}) => {
     if (!socket) return;
 
     // emit username_defined event, so server can save the socket info alongside username
-    console.log('define username');
     socket.emit('defineUsername', { username });
 
     // listens to message event
@@ -107,6 +106,7 @@ const Chat = ({chatId, guess}) => {
 
   return (
     <div className='chat-container'>
+      <p className='chat-type'>{ guess ? "Adivinhe aqui" : "Converse aqui"}</p>
       <div className='chat'>
         <span className='scroll-start-at-top'></span>
         {messages.map((message) => (
