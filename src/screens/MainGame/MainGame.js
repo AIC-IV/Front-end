@@ -1,19 +1,28 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import UserList from '../../components/UserList/UserList';
 import Chat from '../../components/Chat/Chat';
 import './MainGame.css';
 import Card from '../../components/UI/Card';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import AuthContext from '../../store/auth-context';
+import roomService from '../../services/room.service';
 
 const MainGame = (props) => {
+  const history = useHistory();
   const authCtx = useContext(AuthContext);
   const params = useParams();
   const roomId = params.roomId;
 
-  // TODO: Insert validation to check if such room exists
-  // if not, redirect to the room creation screen with a 
-  // message explaining the issue
+  useEffect(() => {
+    async function fetchData() {
+      const response =  await roomService.doesRoomExist(roomId);
+      if (!response.exists) {
+        history.push('/choose-room/error');
+      }
+    }
+    
+    fetchData();
+  }, []);
 
   return (
     <div className='grid-container'>
@@ -22,7 +31,7 @@ const MainGame = (props) => {
       </div>
       <div className='item2'>
         <Card color='purple'>
-          <h1 className='title'>Guess the Drawing</h1>
+          <h1 className='card-title'>Guess the Drawing</h1>
         </Card>
       </div>
       <div className='item3'>
