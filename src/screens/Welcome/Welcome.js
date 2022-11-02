@@ -10,7 +10,6 @@ const Welcome = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   const changeForm = () => {
-    console.log('aqui');
     setIsLogin(!isLogin);
   }
 
