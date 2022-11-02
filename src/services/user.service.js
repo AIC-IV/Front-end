@@ -2,11 +2,11 @@
 import api from './api';
 
 export default {
-  async whoami() {
+  whoami: async () => {
     const response = await api.get('/user/whoami');
     return response.data;
   },
-  async create(values) {
+  create: async (values) => {
     const response = await api.post('/user', values);
     return response;
   },
