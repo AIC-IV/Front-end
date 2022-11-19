@@ -1,12 +1,12 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import ThemeSelector from '../../components/ThemeSelector/ThemeSelector';
 
 // alterar para pegar as salas existentes
 import themes from '../../constants/themes.json';
 import Card from '../../components/UI/Card';
 
 import './ChooseRoom.css';
+import RoomSelector from '../../components/RoomSelector/RoomSelector';
 
 const ChooseRoom = () => {
   const history = useHistory();
@@ -34,7 +34,7 @@ const ChooseRoom = () => {
           Escolha uma sala ou então{' '}
           <span onClick={createARoom} className={`highlight no-select`}>crie uma sala</span>
         </p>
-        <ThemeSelector themes={themes} />
+        <RoomSelector themes={themes} />
       </Card>
     </div>
   );

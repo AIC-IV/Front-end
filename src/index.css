@@ -45,9 +45,10 @@ code {
 
 .title {
   margin: 0;
-  padding: 16px 0px;
   color: white;
+  text-align: center;
 }
+
 
 .card-title {
   text-align: center;

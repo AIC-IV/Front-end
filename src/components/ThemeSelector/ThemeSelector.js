@@ -1,30 +1,42 @@
 import React from 'react';
 import * as MaterialIcons from 'react-icons/md';
 
-import './ThemeSelector.css';
+import styles from './ThemeSelector.module.css';
+import themes from '../../constants/themes.json';
+import Card from '../UI/Card';
+import Button from '../UI/Button';
 
-const ThemeSelector = ({ themes }) => {
+const ThemeSelector = () => {
 
   const getIcon = (iconName) => {
     return MaterialIcons[iconName];
   }
 
   return (
-    <div className='themes-container'>
-      {themes.list.map((theme) => {
-        return (
-          <div className='theme-card no-select' key={theme.id || theme.name}>
-            { theme.players && <div className='room-players'>
-              <span className='players-icon'>{MaterialIcons['MdPerson']()}</span>
-              2/10
-            </div>
-            }
-            <span className='theme-icon'> {getIcon(theme.icon)()} </span>
-            {theme.name}
-          </div>
-        );
-      })}
-    </div>
+    <Card color='purple'>
+      <div className={styles.container}>
+        <h1 className='title'>Escolha um tema</h1>
+        <div className={styles.themesContainer}>
+          {themes.list.map((theme) => {
+            return (
+              <div
+                className={`${styles.themeCard} no-select`}
+                key={theme.id || theme.name}
+              >
+                <span className={styles.themeIcon}>
+                  {getIcon(theme.icon)()}
+                </span>
+                {theme.name}
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.btnContainer}>
+          <Button type='secondary'>Compartilhar</Button>
+          <Button type='secondary'>Iniciar</Button>
+        </div>
+      </div>
+    </Card>
   );
 }
 

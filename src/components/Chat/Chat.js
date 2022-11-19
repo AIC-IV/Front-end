@@ -7,7 +7,7 @@ import { io } from 'socket.io-client';
 import AuthContext from '../../store/auth-context';
 import userService from '../../services/user.service';
 
-const SERVER = 'http://192.168.0.132:7070';
+const SERVER = 'http://192.168.2.105:7070';
 
 const Chat = ({chatId, guess}) => {
   // create state variables
@@ -45,6 +45,7 @@ const Chat = ({chatId, guess}) => {
     const newSocket = io(SERVER, { path: '/ws-api' });
     if (!username) {
       newSocket.on('connect', (socket) => {
+        console.log('here');
         newSocket.emit('connectToChatRoom', { chatId, guess });
       });
     }
@@ -73,6 +74,7 @@ const Chat = ({chatId, guess}) => {
     if (!socket) return;
 
     // emit username_defined event, so server can save the socket info alongside username
+    console.log('define username');
     socket.emit('defineUsername', { username });
 
     // listens to message event
