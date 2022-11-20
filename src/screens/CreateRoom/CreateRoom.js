@@ -48,13 +48,17 @@ const CreateRoom = () => {
   ]);
   
   const inputChangedHandler = (inputIdentifier, event, override) => {
-    const enteredValue = event.target.value;
+    
     let validationState = false;
+    let enteredValue;
 
     if (!override) {
+      enteredValue = event.target.value;
       const validationFn = validationFunctionsMap.get(inputIdentifier);
       validationState = validationFn(enteredValue);
-    } 
+    } else {
+      enteredValue = event;
+    }
 
     setInputs((curInputValues) => {
       return {
@@ -75,6 +79,7 @@ const CreateRoom = () => {
     }
     
     const response = await roomService.doesRoomExist(inputs.roomName.value);
+    console.log(response);
     if (response.exists) {
       inputChangedHandler('roomName', inputs.roomName.value, true);
       setErrorMessage('Já existe uma sala com esse nome');

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as MaterialIcons from 'react-icons/md';
 
 import styles from './ThemeSelector.module.css';
@@ -6,10 +6,24 @@ import themes from '../../constants/themes.json';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
 
+const btnState1 = 'Copiar link da sala';
+const btnState2 = 'Link copiado!';
+
 const ThemeSelector = () => {
+  const [selectedTheme, setSelectedTheme] = useState(null);
+  const [btnHint, setBtnHint] = useState(btnState1);
 
   const getIcon = (iconName) => {
     return MaterialIcons[iconName];
+  }
+
+  const copyUrl = () => {
+    const currUrl = window.location.href;
+    navigator.clipboard.writeText(currUrl);
+    setBtnHint(btnState2);
+    setTimeout(function() {
+      setBtnHint(btnState1);
+    }, 2000);
   }
 
   return (
@@ -20,7 +34,10 @@ const ThemeSelector = () => {
           {themes.list.map((theme) => {
             return (
               <div
-                className={`${styles.themeCard} no-select`}
+                onClick={() => setSelectedTheme(theme.name)}
+                className={`${styles.themeCard} ${
+                  selectedTheme === theme.name ? styles.selected : ''
+                } no-select`}
                 key={theme.id || theme.name}
               >
                 <span className={styles.themeIcon}>
@@ -32,7 +49,9 @@ const ThemeSelector = () => {
           })}
         </div>
         <div className={styles.btnContainer}>
-          <Button type='secondary'>Compartilhar</Button>
+          <Button type='secondary' onClick={copyUrl}>
+            { btnHint }
+          </Button>
           <Button type='secondary'>Iniciar</Button>
         </div>
       </div>

@@ -35,7 +35,7 @@ const App = () => {
       <Navbar></Navbar>
       <Switch>
         <Route path='/' exact>
-          <Redirect to='/main-game/default' />
+          <Redirect to='/choose-room' />
         </Route>
         <Route path='/main-game/:roomId'>
           <MainGame />

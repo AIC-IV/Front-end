@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as MaterialIcons from 'react-icons/md';
+import { useHistory } from 'react-router-dom';
+
+import roomService from '../../services/room.service';
 
 import './RoomSelector.css';
 
-const RoomSelector = ({themes}) => {
+const RoomSelector = () => {
+  const history = useHistory();
+
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await roomService.getRooms();
+      setRooms(response.rooms);
+    }
+
+    fetchData();
+  }, []);
+
+  const joinRoom = (roomName) => {
+    history.replace(`/main-game/${roomName}`);
+  }
 
   const getIcon = (iconName) => {
     return MaterialIcons[iconName];
@@ -11,16 +30,16 @@ const RoomSelector = ({themes}) => {
 
   return (
     <div className='themes-container'>
-      {themes.list.map((theme) => {
+      {rooms.map((room) => {
         return (
-          <div className='theme-card no-select' key={theme.id || theme.name}>
-            { theme.players && <div className='room-players'>
+          <div className='theme-card no-select' onClick={() => joinRoom(room.name)} key={room.name}>
+            { room.players && <div className='room-players'>
               <span className='players-icon'>{MaterialIcons['MdPerson']()}</span>
-              2/10
+              { room.players.length} / {room.maxPlayers }
             </div>
             }
-            <span className='theme-icon'> {getIcon(theme.icon)()} </span>
-            {theme.name}
+            <span className='theme-icon'> {getIcon(room.icon || 'MdShuffle')()} </span>
+            {room.name || 'Tema indefinido'}
           </div>
         );
       })}

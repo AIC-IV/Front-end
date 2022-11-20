@@ -55,7 +55,7 @@ const Login = ({ changeForm }) => {
       
       authCtx.storeUsername(account.username);
 
-      history.replace('/main-game');
+      history.replace('/choose-room');
     } catch (error) {
       alert(error);
     }

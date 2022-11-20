@@ -34,7 +34,7 @@ const ChooseRoom = () => {
           Escolha uma sala ou então{' '}
           <span onClick={createARoom} className={`highlight no-select`}>crie uma sala</span>
         </p>
-        <RoomSelector themes={themes} />
+        <RoomSelector />
       </Card>
     </div>
   );

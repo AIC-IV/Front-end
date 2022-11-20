@@ -14,4 +14,8 @@ export default {
     const response = await socketApi.post(`/joinRoom`, { roomId, username });
     return response.data;
   },
+  getRooms: async () => {
+    const response = await socketApi.get(`/getRooms`);
+    return response.data;
+  }
 };

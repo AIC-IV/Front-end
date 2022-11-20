@@ -70,8 +70,6 @@ const MainGame = () => {
     
   }, [socket]);
 
-  
-
   return (
     <div className='grid-container'>
       <div className='item1'>
@@ -100,10 +98,10 @@ const MainGame = () => {
         )}
       </div>
       <div className='item4'>
-        <Chat chatId={`${roomId}-guess`} guess={true}></Chat>
+        <Chat chatId={`${roomId}-guess`} guess={true} roomId={roomId}></Chat>
       </div>
       <div className='item5'>
-        <Chat chatId={`${roomId}-chat`} guess={false}></Chat>
+        <Chat chatId={`${roomId}-chat`} guess={false} roomId={roomId}></Chat>
       </div>
     </div>
   );
