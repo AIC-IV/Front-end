@@ -41,10 +41,12 @@
   display: flex;
 }
 
-.sent-by-me {
+.sent-by-me,.correct-guess,.almost-correct-guess {
   align-items: flex-end;
   justify-content: flex-end;
 }
+
+
 
 .message {
   margin: 0;
@@ -63,6 +65,16 @@
 
 .message--sent-by-me {
   background-color: rgb(191, 236, 253);
+}
+
+.message--correct-guess {
+  background-color: rgb(194, 224, 194);
+  color: rgb(10, 65, 10);
+}
+
+.message--almost-correct-guess {
+  background-color: rgb(255, 231, 203);
+  color: rgb(138, 74, 14);
 }
 
 p {

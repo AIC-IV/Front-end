@@ -9,7 +9,7 @@ import userService from '../../services/user.service';
 
 const SERVER = 'http://192.168.2.105:7070';
 
-const Chat = ({chatId, guess}) => {
+const Chat = ({chatId, guess, roomId}) => {
   // create state variables
   const authCtx = useContext(AuthContext);
   const [username, setUsername] = useState('');
@@ -81,9 +81,15 @@ const Chat = ({chatId, guess}) => {
     // whenever event is received, validates if message author
     // is not equal to the current username
     socket.on('message', (receivedMessage) => {
+      console.log('new message here');
       if (receivedMessage.author !== username) {
         addMessageHandler(receivedMessage, 'sent-by-others');
       }
+    });
+
+    socket.on('attempt', (response) => {
+      if (response.match) addMessageHandler(response, 'correct-guess');
+      else addMessageHandler(response, 'almost-correct-guess');
     });
   }, [username]);
 
@@ -100,7 +106,7 @@ const Chat = ({chatId, guess}) => {
     // validate if message is not empty
     if (!messageText) return;
 
-    const message = { author: username, text: messageText, chatId: chatId };
+    const message = { author: username, text: messageText, chatId, guess, roomId };
     socket.emit('message', message);
     addMessageHandler(message, 'sent-by-me');
     setMessageText('');
