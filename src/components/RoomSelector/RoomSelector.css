@@ -1,0 +1,46 @@
+.themes-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.theme-card {
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.36);
+  border-radius: 6px;
+  color: white;
+  margin: 6px;
+  display: flex;
+  flex-direction: column;
+  min-width: 25%;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.theme-card:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.theme-icon {
+  font-size: 5rem;
+}
+
+.room-players {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.players-icon {
+  font-size: 20px;
+  margin: 4px 2px 0 0;
+
+}

@@ -1,0 +1,29 @@
+.card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  border-radius: 12px;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.white {
+  background-color: white;
+}
+
+.offwhite {
+  background-color: #785CB3;
+}
+
+.purple {
+  background-color: #2C0088;
+}
+
+.red {
+  background-color: #F8D7DA;
+  color: #B05035;
+  text-align: center;
+}

@@ -1,0 +1,71 @@
+.grid-container {
+  grid-template-areas:
+    'side side header header header header'
+    'side side board board board board'
+    'side side board board board board'
+    'side side board board board board'
+    'side side board board board board'
+    'side side board board board board'
+    'side side chat1 chat1 chat2 chat2'
+    'side side chat1 chat1 chat2 chat2';
+
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+  height: 90vh;
+  width: 90vw;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: 1px solid lavender;
+  border-radius: 8px;
+}
+
+.word {
+  background-color: var(--orange);
+  border: 1px solid var(--orange);
+  color: white;
+  font-weight: bold;
+  text-align: center;  
+  border-radius: 8px;
+  margin-bottom: 4px;
+  padding: 6px;
+}
+
+.item1 {
+  grid-area: side;
+  display: flex;
+}
+
+.item2 {
+  grid-area: header;
+  display: flex;
+}
+
+.item3 {
+  grid-area: board;
+  display: flex;
+}
+
+.item4 {
+  grid-area: chat1;
+  display: flex;
+}
+
+.item5 {
+  grid-area: chat2;
+  display: flex;
+  height: 100%;
+  min-height: 100%;
+}
+
+.full {
+  width: 100%;
+  height: 100%;
+}
+

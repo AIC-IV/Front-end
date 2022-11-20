@@ -1,0 +1,28 @@
+{
+  "list": [
+    {
+      "name": "Animais",
+      "icon": "MdPets"
+    },
+    {
+      "name": "Comida",
+      "icon": "MdFastfood"
+    },
+    {
+      "name": "Objetos",
+      "icon": "MdChair"
+    },
+    {
+      "name": "Profissões",
+      "icon": "MdSchool"
+    },
+    {
+      "name": "Verbos",
+      "icon": "MdChatBubble"
+    },
+    {
+      "name": "Lugares",
+      "icon": "MdOutlinePublic"
+    }
+  ]
+}

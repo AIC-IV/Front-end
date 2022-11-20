@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+}
+
+.themesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.themeCard {
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.36);
+  border-radius: 6px;
+  color: white;
+  margin: 6px;
+  display: flex;
+  flex-direction: column;
+  min-width: 25%;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.selected {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.themeCard:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.themeIcon {
+  font-size: 5rem;
+}
+
+.btnContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: stretch;
+  gap: 1rem;
+  padding: 0px 36px;
+}
