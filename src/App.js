@@ -7,6 +7,7 @@ import ChooseRoom from './screens/ChooseRoom/ChooseRoom';
 import CreateRoom from './screens/CreateRoom/CreateRoom';
 import MainGame from './screens/MainGame/MainGame';
 import Welcome from './screens/Welcome/Welcome';
+import Ranking from './screens/Ranking/Ranking';
 import AuthContext from './store/auth-context';
 
 const App = () => {
@@ -48,6 +49,9 @@ const App = () => {
         </Route>
         <Route path='/choose-room'>
           <ChooseRoom />
+        </Route>
+        <Route path='/ranking'>
+          <Ranking />
         </Route>
         <Route path='*'>
           <Redirect to='/' />
