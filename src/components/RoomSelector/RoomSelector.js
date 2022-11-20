@@ -11,6 +11,15 @@ const RoomSelector = () => {
 
   const [rooms, setRooms] = useState([]);
 
+  const icons = new Map([
+    ['animais', 'MdPets'],
+    ['comida', 'MdFastfood'],
+    ['objetos', 'MdChair'],
+    ['profissões', 'MdSchool'],
+    ['verbos', 'MdChatBubble'],
+    ['lugares', 'MdOutlinePublic'],
+  ]);
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await roomService.getRooms();
@@ -24,8 +33,9 @@ const RoomSelector = () => {
     history.replace(`/main-game/${roomName}`);
   }
 
-  const getIcon = (iconName) => {
-    return MaterialIcons[iconName];
+  const selectIcon = (iconName) => {
+    const icon = icons.get(iconName);
+    return MaterialIcons[icon || 'MdShuffle'];
   }
 
   return (
@@ -35,10 +45,10 @@ const RoomSelector = () => {
           <div className='theme-card no-select' onClick={() => joinRoom(room.name)} key={room.name}>
             { room.players && <div className='room-players'>
               <span className='players-icon'>{MaterialIcons['MdPerson']()}</span>
-              { room.players.length} / {room.maxPlayers }
+              { room.numOfPlayers} / {room.maxPlayers }
             </div>
             }
-            <span className='theme-icon'> {getIcon(room.icon || 'MdShuffle')()} </span>
+            <span className='theme-icon'> {selectIcon(room.theme)()} </span>
             {room.name || 'Tema indefinido'}
           </div>
         );

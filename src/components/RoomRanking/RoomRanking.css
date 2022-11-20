@@ -1,0 +1,39 @@
+.room-ranking-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  margin: 1rem 5rem;
+}
+
+.ranking-username {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.winner {
+  background-color: white;
+  display: flex;
+  margin-bottom: 1.5rem;
+  justify-content: space-between;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-weight: bold;
+}
+
+.winner--1 {
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #E5B404;
+}
+
+.winner--2 {
+  font-size: 1.8rem;
+  color: #8b8981;
+}
+
+.winner--3 {
+  color: #A68100;
+  font-size: 1.5rem;
+}

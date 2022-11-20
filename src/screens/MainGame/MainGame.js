@@ -11,6 +11,7 @@ import UserList from '../../components/UserList/UserList';
 import roomService from '../../services/room.service';
 
 import './MainGame.css';
+import RoomRanking from '../../components/RoomRanking/RoomRanking';
 
 const SERVER = 'http://192.168.2.105:7070';
 
@@ -47,10 +48,17 @@ const MainGame = () => {
       } else {
         joinRoom();
 
-        socket.on('banana', (response) => {
-          console.log('hereaaaaa', response.players);
+        socket.on('updatePlayers', (response) => {
           setPlayers(response.players);
         });
+
+        socket.on('newTurn', (response) => {
+          setRoom(response.room);
+        })
+
+        socket.on('endGame', (response) => {
+          setRoom(response.room);
+        })
       }
 
     }
@@ -58,9 +66,10 @@ const MainGame = () => {
     async function joinRoom() {
       const response = await roomService.joinRoom(roomId, authCtx.username);
       if (response.success) {
-        socket.emit('joinRoom');
+        socket.emit('joinRoom', { username: authCtx.username });
+        console.log(response.room);
         setRoom(response.room);
-        setPlayers(response.room.players);
+        setPlayers(response.players);
       } else {
         console.log('err', response);
       }
@@ -69,6 +78,20 @@ const MainGame = () => {
     fetchData();
     
   }, [socket]);
+
+  const startGameHandler = (theme) => {
+    socket.emit('startGame', { theme })
+  };
+
+  const isPlayerInTurn = () => {
+    return authCtx.username === room.playerInTurn.username;
+  }
+
+  const getTopPlayers = () => {
+    players.sort((a,b) => b.points - a.points);
+    const end = Math.min(players.length, 3);
+    return players.slice(0, end);
+  }
 
   return (
     <div className='grid-container'>
@@ -80,23 +103,32 @@ const MainGame = () => {
           <h1 className='card-title'>Guess the Drawing</h1>
         </Card>
       </div>
-      <div className='item3'>
+      {!room.endGame && <div className='item3'>
         {room.theme && (
           <Card className='full' color='white'>
-            <p className='word'>A palavra é: árvore</p>
+            { isPlayerInTurn() && <p className='word'>
+              A palavra é: {room.secretWord}
+            </p> }
             <iframe
               title='whiteboard'
-              src={`http://localhost:7070/?whiteboardid=${roomId}&username=${authCtx.username}`}
+              src={`http://localhost:7070/?whiteboardid=${roomId}&username=${
+                authCtx.username
+              }${!isPlayerInTurn() ? '&readOnly=true' : ''}`}
             ></iframe>
           </Card>
         )}
-        {!room.theme && room.owner === authCtx.username && <ThemeSelector />}
+        {!room.theme && room.owner === authCtx.username && (
+          <ThemeSelector startGame={startGameHandler} />
+        )}
         {!room.theme && room.owner !== authCtx.username && (
           <Card color='purple'>
             <p className='card-subtitle'>Aguarde, o jogo começará em breve.</p>
           </Card>
         )}
-      </div>
+      </div> }
+      { room.endGame && <div className='item3'>
+        <RoomRanking players={getTopPlayers()} />
+      </div> }
       <div className='item4'>
         <Chat chatId={`${roomId}-guess`} guess={true} roomId={roomId}></Chat>
       </div>
