@@ -1,8 +1,6 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
-// alterar para pegar as salas existentes
-import themes from '../../constants/themes.json';
 import Card from '../../components/UI/Card';
 
 import './ChooseRoom.css';

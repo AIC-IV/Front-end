@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '../UI/Button';
 import './Modal.css';
 
-const SERVER = 'http://192.168.2.105:3000';
+const SERVER = 'http://192.168.2.107:3000';
 
 const Modal = (props) => {
   // create states

@@ -8,6 +8,10 @@
   --orange: #F4B367;
   --warning-red: rgb(253, 103, 103);
   --gray: rgb(105, 105, 105);
+  --light-blue: rgb(173, 222, 255);
+  --gold: #E5B404;
+  --silver: #8b8981;
+  --bronze: #A68100;
 } 
 
 html, body {

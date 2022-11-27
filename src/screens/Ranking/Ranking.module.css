@@ -1,0 +1,42 @@
+.table {
+  display: flex;
+  background-color: var(--background-color);
+  flex-direction: column;
+  color: white;
+  border-radius: 6px;
+  padding: 12px 16px;
+  width: 60vw;
+  height: 50vh;
+  overflow-y: auto;
+  margin: 16px;
+}
+
+.tableRow {
+  display: flex;
+  justify-content: space-between;
+  margin: 6px 0px 6px;
+  padding: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.068);
+}
+
+.tableRow:first-child {
+  font-size: 1.3rem;
+  color: var(--gold);
+}
+
+.tableRow:nth-child(2) {
+  font-size: 1.2rem;
+  color: var(--silver);
+}
+
+.tableRow:nth-child(3) {
+  font-size: 1.1rem;
+  color: var(--bronze);
+}
+
+.tableRow:first-child, .tableRow:nth-child(2), .tableRow:nth-child(3) {
+  background-color: white;
+  border-radius: 6px;
+  font-weight: bold;
+}
+

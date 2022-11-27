@@ -9,8 +9,8 @@ import Button from '../UI/Button';
 const btnState1 = 'Copiar link da sala';
 const btnState2 = 'Link copiado!';
 
-const ThemeSelector = () => {
-  const [selectedTheme, setSelectedTheme] = useState(null);
+const ThemeSelector = ( { startGame } ) => {
+  const [selectedTheme, setSelectedTheme] = useState('Animais');
   const [btnHint, setBtnHint] = useState(btnState1);
 
   const getIcon = (iconName) => {
@@ -52,7 +52,7 @@ const ThemeSelector = () => {
           <Button type='secondary' onClick={copyUrl}>
             { btnHint }
           </Button>
-          <Button type='secondary'>Iniciar</Button>
+          <Button onClick={() => startGame(selectedTheme)} type='secondary'>Iniciar</Button>
         </div>
       </div>
     </Card>

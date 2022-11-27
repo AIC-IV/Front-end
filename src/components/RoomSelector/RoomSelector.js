@@ -4,12 +4,21 @@ import { useHistory } from 'react-router-dom';
 
 import roomService from '../../services/room.service';
 
-import './RoomSelector.css';
+import styles from './RoomSelector.module.css';
 
 const RoomSelector = () => {
   const history = useHistory();
 
   const [rooms, setRooms] = useState([]);
+
+  const icons = new Map([
+    ['animais', 'MdPets'],
+    ['comida', 'MdFastfood'],
+    ['objetos', 'MdChair'],
+    ['profissões', 'MdSchool'],
+    ['verbos', 'MdChatBubble'],
+    ['lugares', 'MdOutlinePublic'],
+  ]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,25 +33,30 @@ const RoomSelector = () => {
     history.replace(`/main-game/${roomName}`);
   }
 
-  const getIcon = (iconName) => {
-    return MaterialIcons[iconName];
+  const selectIcon = (iconName) => {
+    const icon = icons.get(iconName);
+    return MaterialIcons[icon || 'MdShuffle'];
   }
 
   return (
-    <div className='themes-container'>
+    <div className={styles.container}>
       {rooms.map((room) => {
         return (
-          <div className='theme-card no-select' onClick={() => joinRoom(room.name)} key={room.name}>
-            { room.players && <div className='room-players'>
-              <span className='players-icon'>{MaterialIcons['MdPerson']()}</span>
-              { room.players.length} / {room.maxPlayers }
+          <div className={`${styles.card} no-select`} onClick={() => joinRoom(room.name)} key={room.name}>
+            { room.players && <div className={styles.roomPlayers}>
+              <span className={styles.playersIcon}>{MaterialIcons['MdPerson']()}</span>
+              { room.numOfPlayers} / {room.maxPlayers }
             </div>
             }
-            <span className='theme-icon'> {getIcon(room.icon || 'MdShuffle')()} </span>
+            <span className={styles.themeIcon}> {selectIcon(room.theme)()} </span>
             {room.name || 'Tema indefinido'}
           </div>
         );
       })}
+      { rooms.length === 0 && <div className={styles.error}>
+        Ops, parece que não tem nenhuma sala por enquanto.
+        </div>
+      }
     </div>
   );
 }

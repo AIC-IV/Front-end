@@ -1,10 +1,17 @@
 import React, { useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { GiPerspectiveDiceSixFacesThree } from 'react-icons/gi';
+
 import Button from '../../components/UI/Button';
 import Card from '../../components/UI/Card';
 import GDInput from '../../components/UI/GDInput';
-import { useHistory } from 'react-router-dom';
-import { GiPerspectiveDiceSixFacesThree } from 'react-icons/gi';
+
+import { getRandomNumber } from '../../utils/numbers';
+
 import roomService from '../../services/room.service';
+import userService from '../../services/user.service';
+
 import AuthContext from '../../store/auth-context';
 
 import './CreateRoom.css';
@@ -12,6 +19,8 @@ import './CreateRoom.css';
 const CreateRoom = () => {
   const history = useHistory();
   const authCtx = useContext(AuthContext);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
     roomName: { value: '', isValid: true },
@@ -102,14 +111,27 @@ const CreateRoom = () => {
     }
   };
 
+  const saveImage = async () => {
+    try {
+      const randomImage = getRandomNumber();
+      const response = await userService.update({ id: user.id, photoId: randomImage });
+      console.log(response);
+      dispatch({ type: 'photoId', payload: { photoId: randomImage }});
+    } catch (e) {
+      console.log('Could not save image');
+    }
+  }
+
+
   return (
     <div className='create-room-container'>
       <Card color='purple'>
         <h1 className='card-title'>Guess the Drawing</h1>
         <div className='cr-content'>
           <div className='cr-image-container'>
-            <img className='cr-image' alt='profile' src='/a1.png'></img>
-            <GiPerspectiveDiceSixFacesThree className='cr-dice-icon' />
+            { user.photoId && <img className='cr-image' alt='profile' src={`/images/${user.photoId}.png`}></img> }
+            { !user.photoId && <img className='cr-image' alt='profile' src={`/a1.png`}></img> }
+            <GiPerspectiveDiceSixFacesThree onClick={saveImage} className='cr-dice-icon' />
           </div>
           <div className='cr-form'>
             <p className='cr-text'>Escolha um nome para a sua sala</p>
