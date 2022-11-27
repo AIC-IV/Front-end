@@ -12,12 +12,17 @@ import roomService from '../../services/room.service';
 
 import './MainGame.css';
 import RoomRanking from '../../components/RoomRanking/RoomRanking';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRandomNumber } from '../../utils/numbers';
 
-const SERVER = 'http://192.168.2.105:7070';
+const SERVER = 'http://192.168.2.107:7070';
 
 const MainGame = () => {
   const history = useHistory();
-  const authCtx = useContext(AuthContext);
+  
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  
   const params = useParams();
   const roomId = params.roomId;
 
@@ -40,6 +45,7 @@ const MainGame = () => {
 
   useEffect(() => {
     if (!socket) return;
+    if (!user.username) return;
 
     async function fetchData() {
       const response =  await roomService.doesRoomExist(roomId);
@@ -64,10 +70,10 @@ const MainGame = () => {
     }
     
     async function joinRoom() {
-      const response = await roomService.joinRoom(roomId, authCtx.username);
+      const image = user.photoId || getRandomNumber();
+      const response = await roomService.joinRoom(roomId, user.username, image);
       if (response.success) {
-        socket.emit('joinRoom', { username: authCtx.username });
-        console.log(response.room);
+        socket.emit('joinRoom', { username: user.username });
         setRoom(response.room);
         setPlayers(response.players);
       } else {
@@ -77,14 +83,14 @@ const MainGame = () => {
 
     fetchData();
     
-  }, [socket]);
+  }, [socket, user]);
 
   const startGameHandler = (theme) => {
     socket.emit('startGame', { theme })
   };
 
   const isPlayerInTurn = () => {
-    return authCtx.username === room.playerInTurn.username;
+    return user.username === room.playerInTurn.username;
   }
 
   const getTopPlayers = () => {
@@ -112,15 +118,15 @@ const MainGame = () => {
             <iframe
               title='whiteboard'
               src={`http://localhost:7070/?whiteboardid=${roomId}&username=${
-                authCtx.username
+                user.username
               }${!isPlayerInTurn() ? '&readOnly=true' : ''}`}
             ></iframe>
           </Card>
         )}
-        {!room.theme && room.owner === authCtx.username && (
+        {!room.theme && room.owner === user.username && (
           <ThemeSelector startGame={startGameHandler} />
         )}
-        {!room.theme && room.owner !== authCtx.username && (
+        {!room.theme && room.owner !== user.username && (
           <Card color='purple'>
             <p className='card-subtitle'>Aguarde, o jogo começará em breve.</p>
           </Card>

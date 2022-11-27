@@ -12,7 +12,7 @@ const UserList = ({users}) => {
             key={user.username}
             username={user.username}
             points={user.points}
-            image='/a1.png'
+            image={user.image}
           />
       ) 
     }

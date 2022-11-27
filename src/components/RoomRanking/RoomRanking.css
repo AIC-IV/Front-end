@@ -25,15 +25,15 @@
 .winner--1 {
   margin-top: 2rem;
   font-size: 2rem;
-  color: #E5B404;
+  color: var(--gold);
 }
 
 .winner--2 {
   font-size: 1.8rem;
-  color: #8b8981;
+  color: var(--silver);
 }
 
 .winner--3 {
-  color: #A68100;
+  color: var(--bronze);
   font-size: 1.5rem;
 }

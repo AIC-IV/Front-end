@@ -11,7 +11,7 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) => {
-  const initialToken = localStorage.getItem('drawing-token');
+  const initialToken = JSON.parse(localStorage.getItem('drawing-token'));
   const initialUsername = localStorage.getItem('drawing-username');
   const [token, setToken] = useState(initialToken);
   const [username, setUsername] = useState(initialUsername);
@@ -19,6 +19,7 @@ export const AuthContextProvider = (props) => {
   const userIsLoggedIn = !!token;
   
   if (userIsLoggedIn) {
+    console.log(`Bearer ${token}`)
     api.defaults.headers.common.Authorization = `Bearer ${token}`;
   }
 

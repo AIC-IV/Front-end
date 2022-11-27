@@ -7,7 +7,7 @@ import { io } from 'socket.io-client';
 import AuthContext from '../../store/auth-context';
 import userService from '../../services/user.service';
 
-const SERVER = 'http://192.168.2.105:7070';
+const SERVER = 'http://192.168.2.107:7070';
 
 const Chat = ({chatId, guess, roomId}) => {
   // create state variables

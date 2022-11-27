@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import roomService from '../../services/room.service';
 
-import './RoomSelector.css';
+import styles from './RoomSelector.module.css';
 
 const RoomSelector = () => {
   const history = useHistory();
@@ -39,20 +39,24 @@ const RoomSelector = () => {
   }
 
   return (
-    <div className='themes-container'>
+    <div className={styles.container}>
       {rooms.map((room) => {
         return (
-          <div className='theme-card no-select' onClick={() => joinRoom(room.name)} key={room.name}>
-            { room.players && <div className='room-players'>
-              <span className='players-icon'>{MaterialIcons['MdPerson']()}</span>
+          <div className={`${styles.card} no-select`} onClick={() => joinRoom(room.name)} key={room.name}>
+            { room.players && <div className={styles.roomPlayers}>
+              <span className={styles.playersIcon}>{MaterialIcons['MdPerson']()}</span>
               { room.numOfPlayers} / {room.maxPlayers }
             </div>
             }
-            <span className='theme-icon'> {selectIcon(room.theme)()} </span>
+            <span className={styles.themeIcon}> {selectIcon(room.theme)()} </span>
             {room.name || 'Tema indefinido'}
           </div>
         );
       })}
+      { rooms.length === 0 && <div className={styles.error}>
+        Ops, parece que não tem nenhuma sala por enquanto.
+        </div>
+      }
     </div>
   );
 }

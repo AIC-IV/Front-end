@@ -1,6 +1,10 @@
 import React, { useContext } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import rootReducer from './reducer';
+
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import ChooseRoom from './screens/ChooseRoom/ChooseRoom';
@@ -11,6 +15,7 @@ import Ranking from './screens/Ranking/Ranking';
 import AuthContext from './store/auth-context';
 
 const App = () => {
+  const store = createStore(rootReducer);
   const authCtx = useContext(AuthContext);
   
   if (!authCtx.isLoggedIn) {
@@ -32,7 +37,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <Provider store={store}>
       <Navbar></Navbar>
       <Switch>
         <Route path='/' exact>
@@ -57,7 +62,7 @@ const App = () => {
           <Redirect to='/' />
         </Route>
       </Switch>
-    </div>
+    </Provider>
   );
 };
 

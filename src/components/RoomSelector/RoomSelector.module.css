@@ -1,4 +1,4 @@
-.themes-container {
+.container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -6,7 +6,7 @@
   padding: 16px;
 }
 
-.theme-card {
+.card {
   padding: 16px;
   background-color: rgba(255, 255, 255, 0.36);
   border-radius: 6px;
@@ -20,16 +20,16 @@
   position: relative;
 }
 
-.theme-card:hover {
+.card:hover {
   background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
 }
 
-.theme-icon {
+.themeIcon {
   font-size: 5rem;
 }
 
-.room-players {
+.roomPlayers {
   position: absolute;
   left: 6px;
   top: 6px;
@@ -39,8 +39,20 @@
   justify-content: center;
 }
 
-.players-icon {
+.playersIcon {
   font-size: 20px;
   margin: 4px 2px 0 0;
+}
 
+.error {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.36);
+  border-radius: 6px;
+  padding: 32px;
+  margin-bottom: 16px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
