@@ -39,6 +39,11 @@ const Navbar = () => {
     history.push('/ranking');
   }
 
+  const profile = () => {
+    console.log('here');
+    history.push('/profile');
+  }
+
   return (
     <nav>
       <ul className={`${styles.navbar} ${styles.ul}`}>
@@ -52,11 +57,11 @@ const Navbar = () => {
           <li className={`${styles.li} no-select`}>Histórico</li>
         </div>
         <div className={styles.rightContainer}>
-          <li className={`${styles.li} ${styles.smallerMargin}`} >
+          <li onClick={profile} className={`${styles.li} ${styles.smallerMargin}`} >
             { user.photoId && <img className={styles.image} alt='profile' src={`/images/${user.photoId}.png`}></img> }
             { !user.photoId && <img className={styles.image} alt='profile' src={`/a1.png`}></img> }
           </li>
-          <li className={`${styles.li} no-select`}>
+          <li onClick={profile} className={`${styles.li} no-select`}>
             {user.username}
           </li>
           <li className={`${styles.li} no-select`} onClick={logout}>

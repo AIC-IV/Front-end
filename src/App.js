@@ -5,12 +5,13 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducer';
 
-import Navbar from './components/navbar';
 import ChooseRoom from './screens/choose-room';
 import CreateRoom from './screens/create-room';
 import MainGame from './screens/main-game';
-import Welcome from './screens/welcome';
+import Navbar from './components/navbar';
+import Profile from './screens/profile';
 import Ranking from './screens/ranking';
+import Welcome from './screens/welcome';
 import AuthContext from './store/auth-context';
 
 import './App.css';
@@ -55,6 +56,9 @@ const App = () => {
         </Route>
         <Route path='/choose-room'>
           <ChooseRoom />
+        </Route>
+        <Route path='/profile'>
+          <Profile />
         </Route>
         <Route path='/ranking'>
           <Ranking />
