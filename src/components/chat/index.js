@@ -123,7 +123,7 @@ const Chat = ({chatId, guess, roomId}) => {
             className={`${styles[message.className]} ${styles.messageContainer}`}
             key={message.key}
           >
-            <div className={`${styles[message]} ${styles['message' + message.className]}`}>
+            <div className={`${styles.message} ${styles['message' + message.className]}`}>
               {message.author !== username && (
                 <p
                   className={`${styles.messageAuthor} ${styles.p}`}

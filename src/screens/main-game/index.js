@@ -121,7 +121,7 @@ const MainGame = () => {
               <iframe
                 className={styles.iframe}
                 title='whiteboard'
-                src={`http://localhost:7070/?whiteboardid=${roomId}&username=${
+                src={`${SOCKET_URL}/?whiteboardid=${roomId}&username=${
                   user.username
                 }${!isPlayerInTurn() ? '&readOnly=true' : ''}`}
               ></iframe>

@@ -3,6 +3,7 @@ import socketApi from './socketApi';
 
 export default {
   doesRoomExist: async (roomId) => {
+    console.log(roomId);
     const response = await socketApi.get(`/doesRoomExist?id=${roomId}`);
     return response.data;
   },
