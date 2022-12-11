@@ -1,7 +1,16 @@
 import axios from 'axios';
 
+import settings from '../../src/constants/settings.json';
+
+let SOCKET_URL = '';
+if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+  SOCKET_URL = settings.development.socketBackendUrl;
+} else {
+  SOCKET_URL = settings.production.socketBackendUrl;
+}
+
 const socketApi = axios.create({
-  baseURL: 'http://192.168.2.107:7070/api',
+  baseURL: `${SOCKET_URL}/api`,
 });
 
 socketApi.interceptors.request.use(
