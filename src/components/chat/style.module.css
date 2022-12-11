@@ -41,7 +41,7 @@
   display: flex;
 }
 
-.sentByMe,.correctGuess,.almostCorrectGuess {
+.SentByMe,.CorrectGuess,.AlmostCorrectGuess {
   align-items: flex-end;
   justify-content: flex-end;
 }
@@ -80,7 +80,7 @@
   margin: 0;
 }
 
-.message-author {
+.messageAuthor {
   font-weight: 500;
   font-size: 11px;
 }
