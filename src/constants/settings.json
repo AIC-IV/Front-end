@@ -1,0 +1,8 @@
+{
+  "development": {
+    "socketBackendUrl": "http://192.168.2.114:7070"
+  }, 
+  "production": {
+    "socketBackendUrl": "https://guess-the-drawing-websocket.herokuapp.com:7070"
+  } 
+}

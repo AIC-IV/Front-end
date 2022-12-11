@@ -5,14 +5,15 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducer';
 
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import ChooseRoom from './screens/ChooseRoom/ChooseRoom';
-import CreateRoom from './screens/CreateRoom/CreateRoom';
-import MainGame from './screens/MainGame/MainGame';
-import Welcome from './screens/Welcome/Welcome';
-import Ranking from './screens/Ranking/Ranking';
+import Navbar from './components/navbar';
+import ChooseRoom from './screens/choose-room';
+import CreateRoom from './screens/create-room';
+import MainGame from './screens/main-game';
+import Welcome from './screens/welcome';
+import Ranking from './screens/ranking';
 import AuthContext from './store/auth-context';
+
+import './App.css';
 
 const App = () => {
   const store = createStore(rootReducer);
