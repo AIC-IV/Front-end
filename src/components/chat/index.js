@@ -9,12 +9,7 @@ import styles from './style.module.css';
 
 import settings from '../../constants/settings.json';
 
-let SOCKET_URL = '';
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  SOCKET_URL = settings.development.socketBackendUrl;
-} else {
-  SOCKET_URL = settings.production.socketBackendUrl;
-}
+const SOCKET_URL = settings.socketBackendUrl;
 
 const Chat = ({chatId, guess, roomId}) => {
   const authCtx = useContext(AuthContext);

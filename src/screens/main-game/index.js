@@ -17,12 +17,8 @@ import styles from './style.module.css';
 
 import settings from '../../constants/settings.json';
 
-let SOCKET_URL = '';
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  SOCKET_URL = settings.development.socketBackendUrl;
-} else {
-  SOCKET_URL = settings.production.socketBackendUrl;
-}
+let SOCKET_URL = settings.socketBackendUrl;
+
 
 const MainGame = () => {
   const history = useHistory();

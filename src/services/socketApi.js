@@ -2,12 +2,7 @@ import axios from 'axios';
 
 import settings from '../../src/constants/settings.json';
 
-let SOCKET_URL = '';
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  SOCKET_URL = settings.development.socketBackendUrl;
-} else {
-  SOCKET_URL = settings.production.socketBackendUrl;
-}
+const SOCKET_URL = settings.socketBackendUrl;
 
 const socketApi = axios.create({
   baseURL: `${SOCKET_URL}/api`,
