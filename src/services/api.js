@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://guess-drawing-serv.herokuapp.com',
+  baseURL: 'https://guess-the-drawing-backend.herokuapp.com',
 });
 
 api.interceptors.request.use(async (config) => {
