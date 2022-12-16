@@ -22,8 +22,8 @@ const RoomRanking = ({ players, deleteRoom, playAgain }) => {
           })}
         </div>
         <div className={styles.rowContainer}>
-          <Button type='secondary' onClick={deleteRoom}>Excluir sala</Button>
-          <Button type='secondary' onClick={playAgain}>Jogar de novo</Button>
+          <Button type='secondary' onClick={deleteRoom}>Finalizar Partida</Button>
+          {/* <Button type='secondary' onClick={playAgain}>Jogar de novo</Button> */}
         </div>
       </div>
     </Card>
