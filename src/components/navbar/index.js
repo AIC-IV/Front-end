@@ -21,9 +21,10 @@ const Navbar = () => {
       dispatch({ type: 'user', payload: user });
     };
 
-    if (authCtx.isLoggedIn) {
+    if (authCtx.isLoggedIn && !user.username) {
       loadUserData();
     }
+
   }, []);
 
   const logout = () => {
