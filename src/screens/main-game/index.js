@@ -83,7 +83,6 @@ const MainGame = () => {
     
     async function joinRoom() {
       const image = user.photoId || getRandomNumber();
-      console.log(user);
       const response = await roomService.joinRoom(roomId, user.username, user.id, image);
       if (response.success) {
         socket.emit('joinRoom', { username: user.username });

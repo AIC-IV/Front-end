@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Card from '../card';
 import Button from '../button';
@@ -14,6 +15,7 @@ import AuthContext from '../../store/auth-context';
 const Login = ({ changeForm }) => {
   const authCtx = useContext(AuthContext);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
     username: '',
@@ -54,9 +56,11 @@ const Login = ({ changeForm }) => {
       
       authCtx.login(token);
       
-      const account = await userService.whoami();
+      const response = await userService.whoami();
+      const user = await userService.getUser(response.id);
+      dispatch({ type: 'user', payload: user });
       
-      authCtx.storeUsername(account.username);
+      authCtx.storeUsername(user.username);
 
       history.replace('/choose-room');
     } catch (error) {

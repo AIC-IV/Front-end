@@ -22,7 +22,7 @@ const App = () => {
   
   if (!authCtx.isLoggedIn) {
     return (
-      <div>
+      <Provider store={store}>
         <Switch>
           <Route path='/' exact>
             <Redirect to='/welcome' />
@@ -34,7 +34,7 @@ const App = () => {
             <Redirect to='/' />
           </Route>
         </Switch>
-      </div>
+      </Provider>
     );
   }
 

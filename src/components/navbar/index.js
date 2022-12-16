@@ -54,7 +54,6 @@ const Navbar = () => {
           <li className={`${styles.li} no-select`} onClick={ranking}>
             Ranking
           </li>
-          <li className={`${styles.li} no-select`}>Histórico</li>
         </div>
         <div className={styles.rightContainer}>
           <li onClick={profile} className={`${styles.li} ${styles.smallerMargin}`} >
