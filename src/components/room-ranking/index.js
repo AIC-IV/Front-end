@@ -4,7 +4,7 @@ import Card from '../card';
 
 import styles from './style.module.css';
 
-const RoomRanking = ({ players }) => {
+const RoomRanking = ({ players, deleteRoom, playAgain }) => {
   return (
     <Card className='full' color='purple'>
       <div className={styles.roomRankingContainer}>
@@ -21,7 +21,10 @@ const RoomRanking = ({ players }) => {
             );
           })}
         </div>
-        <Button type='secondary'>Jogar de novo</Button>
+        <div>
+          <Button type='secondary' onClick={deleteRoom}>Excluir sala</Button>
+          <Button type='secondary' onClick={playAgain}>Jogar de novo</Button>
+        </div>
       </div>
     </Card>
   );

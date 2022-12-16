@@ -58,22 +58,33 @@ const MainGame = () => {
 
         socket.on('updatePlayers', (response) => {
           setPlayers(response.players);
+          if(response.room) setRoom(response.room);
+          console.log(response.room);
         });
 
         socket.on('newTurn', (response) => {
           setRoom(response.room);
-        })
+        });
 
         socket.on('endGame', (response) => {
           setRoom(response.room);
-        })
+        });
+
+        socket.on('newGame', (response) => {
+          setRoom(response.room);
+        });
+
+        socket.on('deleteRoom', () => {
+          history.push('/choose-room');
+        });
       }
 
     }
     
     async function joinRoom() {
       const image = user.photoId || getRandomNumber();
-      const response = await roomService.joinRoom(roomId, user.username, image);
+      console.log(user);
+      const response = await roomService.joinRoom(roomId, user.username, user.id, image);
       if (response.success) {
         socket.emit('joinRoom', { username: user.username });
         setRoom(response.room);
@@ -99,6 +110,14 @@ const MainGame = () => {
     players.sort((a,b) => b.points - a.points);
     const end = Math.min(players.length, 3);
     return players.slice(0, end);
+  }
+
+  const playAgainHandler = () => {
+    socket.emit('playAgain');
+  }
+
+  const deleteRoomHandler = () => {
+    socket.emit('deleteRoom');
   }
 
   return (
@@ -141,7 +160,7 @@ const MainGame = () => {
       )}
       {room.endGame && (
         <div className={styles.item3}>
-          <RoomRanking players={getTopPlayers()} />
+          <RoomRanking players={getTopPlayers()} playAgain={playAgainHandler} deleteRoom={deleteRoomHandler} />
         </div>
       )}
       <div className={styles.item4}>

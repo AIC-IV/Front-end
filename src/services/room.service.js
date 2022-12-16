@@ -11,8 +11,8 @@ export default {
     const response = await socketApi.post(`/createRoom`, data);
     return response.data;
   },
-  joinRoom: async (roomId, username, image) => {
-    const response = await socketApi.post(`/joinRoom`, { roomId, username, image });
+  joinRoom: async (roomId, username, userId, image) => {
+    const response = await socketApi.post(`/joinRoom`, { roomId, username, userId, image });
     return response.data;
   },
   getRooms: async () => {
