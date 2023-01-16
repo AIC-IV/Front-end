@@ -46,7 +46,6 @@ const Chat = ({chatId, guess, roomId}) => {
     const newSocket = io(SOCKET_URL, { path: '/ws-api' });
     if (!username) {
       newSocket.on('connect', (socket) => {
-        console.log('here');
         newSocket.emit('connectToChatRoom', { chatId, guess });
       });
     }
@@ -75,14 +74,12 @@ const Chat = ({chatId, guess, roomId}) => {
     if (!socket) return;
 
     // emit username_defined event, so server can save the socket info alongside username
-    console.log('define username');
     socket.emit('defineUsername', { username });
 
     // listens to message event
     // whenever event is received, validates if message author
     // is not equal to the current username
     socket.on('message', (receivedMessage) => {
-      console.log('new message here');
       if (receivedMessage.author !== username) {
         addMessageHandler(receivedMessage, 'SentByOthers');
       }

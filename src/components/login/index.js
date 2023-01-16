@@ -55,18 +55,28 @@ const Login = ({ changeForm }) => {
       );
       
       authCtx.login(token);
-      
+    
       const response = await userService.whoami();
       const user = await userService.getUser(response.id);
-      dispatch({ type: 'user', payload: user });
       
+      dispatch({ type: 'user', payload: user });
       authCtx.storeUsername(user.username);
 
       history.replace('/choose-room');
+    
+      
     } catch (error) {
-      alert(error);
+      console.log(error);
+      setError(true);
     }
   };
+
+  const handleKeyDown = (event) => {
+    setError(false);
+    if (event.key === 'Enter') {
+      submitForm();
+    }
+  }
 
   return (
     <Card color='white'>
@@ -85,6 +95,7 @@ const Login = ({ changeForm }) => {
           placeholder: 'Password',
           type: 'password',
           onChange: inputChangedHandler.bind(this, 'password'),
+          onKeyDown: handleKeyDown,
         }}
       />
 

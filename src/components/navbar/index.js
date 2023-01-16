@@ -9,23 +9,27 @@ import userService from '../../services/user.service';
 
 const Navbar = () => {
   const authCtx = useContext(AuthContext);
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
   const history = useHistory();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const loadUserData = async () => {
-      const response = await userService.whoami();
-      const user = await userService.getUser(response.id);
-      dispatch({ type: 'user', payload: user });
+      try {
+        const response = await userService.whoami();
+        const loggedInUser = await userService.getUser(response.id);
+        dispatch({ type: 'user', payload: loggedInUser });
+      } catch (e) {
+        logout();
+      }
     };
 
     if (authCtx.isLoggedIn && !user.username) {
       loadUserData();
     }
 
-  }, []);
+  }, [user]);
 
   const logout = () => {
     authCtx.logout();
@@ -41,7 +45,6 @@ const Navbar = () => {
   }
 
   const profile = () => {
-    console.log('here');
     history.push('/profile');
   }
 

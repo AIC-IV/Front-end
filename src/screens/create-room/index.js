@@ -84,13 +84,12 @@ const CreateRoom = () => {
   }
 
   const submitForm = async () => {
-    console.log('here', isFormValid());
     if (!isFormValid()) {
       return;
     }
     
     const response = await roomService.doesRoomExist(inputs.roomName.value);
-    console.log(response);
+    
     if (response.exists) {
       inputChangedHandler('roomName', inputs.roomName.value, true);
       setErrorMessage('Já existe uma sala com esse nome');
@@ -105,7 +104,7 @@ const CreateRoom = () => {
 
     try {
       const data = await roomService.createRoom(formData);
-      console.log(data);
+      
       if (data.success) {
         history.replace(`/main-game/${inputs.roomName.value}`);
       }       

@@ -4,8 +4,9 @@ const initialState = {
 
 export default function appReducer(state = initialState, action) {
   switch (action.type) {
-    case 'user':
-      return { ...state, user: {...action.payload} };
+    case 'user': {
+      return { ...state, user: {...action.payload } };
+    }
     case 'photoId': {
       return {...state, user: {...state.user, ...action.payload }};
     }

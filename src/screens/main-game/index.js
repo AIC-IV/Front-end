@@ -58,8 +58,7 @@ const MainGame = () => {
 
         socket.on('updatePlayers', (response) => {
           setPlayers(response.players);
-          if(response.room) setRoom(response.room);
-          console.log(response.room);
+          if (response.room) setRoom(response.room);
         });
 
         socket.on('newTurn', (response) => {
